@@ -1,0 +1,881 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<root type="CompilationUnit">
+	<imports>
+		<import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+			<name identifier="DataInputStream" type="Name">
+				<qualifier identifier="io" type="Name">
+					<qualifier identifier="java" type="Name"/>
+				</qualifier>
+			</name>
+		</import>
+		<import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+			<name identifier="IOException" type="Name">
+				<qualifier identifier="io" type="Name">
+					<qualifier identifier="java" type="Name"/>
+				</qualifier>
+			</name>
+		</import>
+		<import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+			<name identifier="BigInteger" type="Name">
+				<qualifier identifier="math" type="Name">
+					<qualifier identifier="java" type="Name"/>
+				</qualifier>
+			</name>
+		</import>
+		<import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+			<name identifier="Random" type="Name">
+				<qualifier identifier="util" type="Name">
+					<qualifier identifier="java" type="Name"/>
+				</qualifier>
+			</name>
+		</import>
+	</imports>
+	<types>
+		<type isInterface="false" type="ClassOrInterfaceDeclaration">
+			<name identifier="RSA" type="SimpleName"/>
+			<members>
+				<member type="FieldDeclaration">
+					<modifiers>
+						<modifier keyword="PRIVATE" type="Modifier"/>
+					</modifiers>
+					<variables>
+						<variable type="VariableDeclarator">
+							<name identifier="P" type="SimpleName"/>
+							<type type="ClassOrInterfaceType">
+								<name identifier="BigInteger" type="SimpleName"/>
+							</type>
+						</variable>
+					</variables>
+				</member>
+				<member type="FieldDeclaration">
+					<modifiers>
+						<modifier keyword="PRIVATE" type="Modifier"/>
+					</modifiers>
+					<variables>
+						<variable type="VariableDeclarator">
+							<name identifier="Q" type="SimpleName"/>
+							<type type="ClassOrInterfaceType">
+								<name identifier="BigInteger" type="SimpleName"/>
+							</type>
+						</variable>
+					</variables>
+				</member>
+				<member type="FieldDeclaration">
+					<modifiers>
+						<modifier keyword="PRIVATE" type="Modifier"/>
+					</modifiers>
+					<variables>
+						<variable type="VariableDeclarator">
+							<name identifier="N" type="SimpleName"/>
+							<type type="ClassOrInterfaceType">
+								<name identifier="BigInteger" type="SimpleName"/>
+							</type>
+						</variable>
+					</variables>
+				</member>
+				<member type="FieldDeclaration">
+					<modifiers>
+						<modifier keyword="PRIVATE" type="Modifier"/>
+					</modifiers>
+					<variables>
+						<variable type="VariableDeclarator">
+							<name identifier="PHI" type="SimpleName"/>
+							<type type="ClassOrInterfaceType">
+								<name identifier="BigInteger" type="SimpleName"/>
+							</type>
+						</variable>
+					</variables>
+				</member>
+				<member type="FieldDeclaration">
+					<modifiers>
+						<modifier keyword="PRIVATE" type="Modifier"/>
+					</modifiers>
+					<variables>
+						<variable type="VariableDeclarator">
+							<name identifier="e" type="SimpleName"/>
+							<type type="ClassOrInterfaceType">
+								<name identifier="BigInteger" type="SimpleName"/>
+							</type>
+						</variable>
+					</variables>
+				</member>
+				<member type="FieldDeclaration">
+					<modifiers>
+						<modifier keyword="PRIVATE" type="Modifier"/>
+					</modifiers>
+					<variables>
+						<variable type="VariableDeclarator">
+							<name identifier="d" type="SimpleName"/>
+							<type type="ClassOrInterfaceType">
+								<name identifier="BigInteger" type="SimpleName"/>
+							</type>
+						</variable>
+					</variables>
+				</member>
+				<member type="FieldDeclaration">
+					<modifiers>
+						<modifier keyword="PRIVATE" type="Modifier"/>
+					</modifiers>
+					<variables>
+						<variable type="VariableDeclarator">
+							<initializer type="IntegerLiteralExpr" value="1024"/>
+							<name identifier="maxLength" type="SimpleName"/>
+							<type identifier="INT" type="PrimitiveType"/>
+						</variable>
+					</variables>
+				</member>
+				<member type="FieldDeclaration">
+					<modifiers>
+						<modifier keyword="PRIVATE" type="Modifier"/>
+					</modifiers>
+					<variables>
+						<variable type="VariableDeclarator">
+							<name identifier="R" type="SimpleName"/>
+							<type type="ClassOrInterfaceType">
+								<name identifier="Random" type="SimpleName"/>
+							</type>
+						</variable>
+					</variables>
+				</member>
+				<member type="ConstructorDeclaration">
+					<body type="BlockStmt">
+						<statements>
+							<statement type="ExpressionStmt">
+								<expression operator="ASSIGN" type="AssignExpr">
+									<target type="NameExpr">
+										<name identifier="R" type="SimpleName"/>
+									</target>
+									<value type="ObjectCreationExpr">
+										<type type="ClassOrInterfaceType">
+											<name identifier="Random" type="SimpleName"/>
+										</type>
+									</value>
+								</expression>
+							</statement>
+							<statement type="ExpressionStmt">
+								<expression operator="ASSIGN" type="AssignExpr">
+									<target type="NameExpr">
+										<name identifier="P" type="SimpleName"/>
+									</target>
+									<value type="MethodCallExpr">
+										<name identifier="probablePrime" type="SimpleName"/>
+										<scope type="NameExpr">
+											<name identifier="BigInteger" type="SimpleName"/>
+										</scope>
+										<arguments>
+											<argument type="NameExpr">
+												<name identifier="maxLength" type="SimpleName"/>
+											</argument>
+											<argument type="NameExpr">
+												<name identifier="R" type="SimpleName"/>
+											</argument>
+										</arguments>
+									</value>
+								</expression>
+							</statement>
+							<statement type="ExpressionStmt">
+								<expression operator="ASSIGN" type="AssignExpr">
+									<target type="NameExpr">
+										<name identifier="Q" type="SimpleName"/>
+									</target>
+									<value type="MethodCallExpr">
+										<name identifier="probablePrime" type="SimpleName"/>
+										<scope type="NameExpr">
+											<name identifier="BigInteger" type="SimpleName"/>
+										</scope>
+										<arguments>
+											<argument type="NameExpr">
+												<name identifier="maxLength" type="SimpleName"/>
+											</argument>
+											<argument type="NameExpr">
+												<name identifier="R" type="SimpleName"/>
+											</argument>
+										</arguments>
+									</value>
+								</expression>
+							</statement>
+							<statement type="ExpressionStmt">
+								<expression operator="ASSIGN" type="AssignExpr">
+									<target type="NameExpr">
+										<name identifier="N" type="SimpleName"/>
+									</target>
+									<value type="MethodCallExpr">
+										<name identifier="multiply" type="SimpleName"/>
+										<scope type="NameExpr">
+											<name identifier="P" type="SimpleName"/>
+										</scope>
+										<arguments>
+											<argument type="NameExpr">
+												<name identifier="Q" type="SimpleName"/>
+											</argument>
+										</arguments>
+									</value>
+								</expression>
+								<comment content="generate PUK" type="LineComment"/>
+							</statement>
+							<statement type="ExpressionStmt">
+								<expression operator="ASSIGN" type="AssignExpr">
+									<target type="NameExpr">
+										<name identifier="PHI" type="SimpleName"/>
+									</target>
+									<value type="MethodCallExpr">
+										<name identifier="multiply" type="SimpleName"/>
+										<scope type="MethodCallExpr">
+											<name identifier="subtract" type="SimpleName"/>
+											<scope type="NameExpr">
+												<name identifier="P" type="SimpleName"/>
+											</scope>
+											<arguments>
+												<argument type="FieldAccessExpr">
+													<name identifier="ONE" type="SimpleName"/>
+													<scope type="NameExpr">
+														<name identifier="BigInteger" type="SimpleName"/>
+													</scope>
+												</argument>
+											</arguments>
+										</scope>
+										<arguments>
+											<argument type="MethodCallExpr">
+												<name identifier="subtract" type="SimpleName"/>
+												<scope type="NameExpr">
+													<name identifier="Q" type="SimpleName"/>
+												</scope>
+												<arguments>
+													<argument type="FieldAccessExpr">
+														<name identifier="ONE" type="SimpleName"/>
+														<scope type="NameExpr">
+															<name identifier="BigInteger" type="SimpleName"/>
+														</scope>
+													</argument>
+												</arguments>
+											</argument>
+										</arguments>
+									</value>
+								</expression>
+							</statement>
+							<statement type="ExpressionStmt">
+								<expression operator="ASSIGN" type="AssignExpr">
+									<target type="NameExpr">
+										<name identifier="e" type="SimpleName"/>
+									</target>
+									<value type="MethodCallExpr">
+										<name identifier="probablePrime" type="SimpleName"/>
+										<scope type="NameExpr">
+											<name identifier="BigInteger" type="SimpleName"/>
+										</scope>
+										<arguments>
+											<argument operator="DIVIDE" type="BinaryExpr">
+												<left type="NameExpr">
+													<name identifier="maxLength" type="SimpleName"/>
+												</left>
+												<right type="IntegerLiteralExpr" value="2"/>
+											</argument>
+											<argument type="NameExpr">
+												<name identifier="R" type="SimpleName"/>
+											</argument>
+										</arguments>
+									</value>
+								</expression>
+								<comment content="generate PUK" type="LineComment"/>
+							</statement>
+							<statement type="WhileStmt">
+								<body type="BlockStmt">
+									<statements>
+										<statement type="ExpressionStmt">
+											<expression type="MethodCallExpr">
+												<name identifier="add" type="SimpleName"/>
+												<scope type="NameExpr">
+													<name identifier="e" type="SimpleName"/>
+												</scope>
+												<arguments>
+													<argument type="FieldAccessExpr">
+														<name identifier="ONE" type="SimpleName"/>
+														<scope type="NameExpr">
+															<name identifier="BigInteger" type="SimpleName"/>
+														</scope>
+													</argument>
+												</arguments>
+											</expression>
+											<comment content="generate PUK" type="LineComment"/>
+										</statement>
+									</statements>
+								</body>
+								<condition operator="AND" type="BinaryExpr">
+									<left operator="GREATER" type="BinaryExpr">
+										<left type="MethodCallExpr">
+											<name identifier="compareTo" type="SimpleName"/>
+											<scope type="MethodCallExpr">
+												<name identifier="gcd" type="SimpleName"/>
+												<scope type="NameExpr">
+													<name identifier="PHI" type="SimpleName"/>
+												</scope>
+												<arguments>
+													<argument type="NameExpr">
+														<name identifier="e" type="SimpleName"/>
+													</argument>
+												</arguments>
+											</scope>
+											<arguments>
+												<argument type="FieldAccessExpr">
+													<name identifier="ONE" type="SimpleName"/>
+													<scope type="NameExpr">
+														<name identifier="BigInteger" type="SimpleName"/>
+													</scope>
+												</argument>
+											</arguments>
+										</left>
+										<right type="IntegerLiteralExpr" value="0"/>
+									</left>
+									<right operator="LESS" type="BinaryExpr">
+										<left type="MethodCallExpr">
+											<name identifier="compareTo" type="SimpleName"/>
+											<scope type="NameExpr">
+												<name identifier="e" type="SimpleName"/>
+											</scope>
+											<arguments>
+												<argument type="NameExpr">
+													<name identifier="PHI" type="SimpleName"/>
+												</argument>
+											</arguments>
+										</left>
+										<right type="IntegerLiteralExpr" value="0"/>
+									</right>
+									<comment content="generate PUK" type="LineComment"/>
+								</condition>
+							</statement>
+							<statement type="ExpressionStmt">
+								<expression operator="ASSIGN" type="AssignExpr">
+									<target type="NameExpr">
+										<name identifier="d" type="SimpleName"/>
+									</target>
+									<value type="MethodCallExpr">
+										<name identifier="modInverse" type="SimpleName"/>
+										<scope type="NameExpr">
+											<name identifier="e" type="SimpleName"/>
+										</scope>
+										<arguments>
+											<argument type="NameExpr">
+												<name identifier="PHI" type="SimpleName"/>
+											</argument>
+										</arguments>
+									</value>
+								</expression>
+								<comment content="generate PVK" type="LineComment"/>
+							</statement>
+						</statements>
+					</body>
+					<name identifier="RSA" type="SimpleName"/>
+					<modifiers>
+						<modifier keyword="PUBLIC" type="Modifier"/>
+					</modifiers>
+				</member>
+				<member type="ConstructorDeclaration">
+					<body type="BlockStmt">
+						<statements>
+							<statement type="ExpressionStmt">
+								<expression operator="ASSIGN" type="AssignExpr">
+									<target type="FieldAccessExpr">
+										<name identifier="e" type="SimpleName"/>
+										<scope type="ThisExpr"/>
+									</target>
+									<value type="NameExpr">
+										<name identifier="e" type="SimpleName"/>
+									</value>
+								</expression>
+								<comment content=" puk generated with N" type="LineComment"/>
+							</statement>
+							<statement type="ExpressionStmt">
+								<expression operator="ASSIGN" type="AssignExpr">
+									<target type="FieldAccessExpr">
+										<name identifier="d" type="SimpleName"/>
+										<scope type="ThisExpr"/>
+									</target>
+									<value type="NameExpr">
+										<name identifier="d" type="SimpleName"/>
+									</value>
+								</expression>
+								<comment content=" pvk generated with N" type="LineComment"/>
+							</statement>
+							<statement type="ExpressionStmt">
+								<expression operator="ASSIGN" type="AssignExpr">
+									<target type="FieldAccessExpr">
+										<name identifier="N" type="SimpleName"/>
+										<scope type="ThisExpr"/>
+									</target>
+									<value type="NameExpr">
+										<name identifier="N" type="SimpleName"/>
+									</value>
+								</expression>
+							</statement>
+						</statements>
+					</body>
+					<name identifier="RSA" type="SimpleName"/>
+					<modifiers>
+						<modifier keyword="PUBLIC" type="Modifier"/>
+					</modifiers>
+					<parameters>
+						<parameter isVarArgs="false" type="Parameter">
+							<name identifier="e" type="SimpleName"/>
+							<type type="ClassOrInterfaceType">
+								<name identifier="BigInteger" type="SimpleName"/>
+							</type>
+						</parameter>
+						<parameter isVarArgs="false" type="Parameter">
+							<name identifier="d" type="SimpleName"/>
+							<type type="ClassOrInterfaceType">
+								<name identifier="BigInteger" type="SimpleName"/>
+							</type>
+						</parameter>
+						<parameter isVarArgs="false" type="Parameter">
+							<name identifier="N" type="SimpleName"/>
+							<type type="ClassOrInterfaceType">
+								<name identifier="BigInteger" type="SimpleName"/>
+							</type>
+						</parameter>
+					</parameters>
+				</member>
+				<member type="MethodDeclaration">
+					<body type="BlockStmt">
+						<statements>
+							<statement type="ExpressionStmt">
+								<expression type="VariableDeclarationExpr">
+									<variables>
+										<variable type="VariableDeclarator">
+											<initializer type="ObjectCreationExpr">
+												<type type="ClassOrInterfaceType">
+													<name identifier="RSA" type="SimpleName"/>
+												</type>
+											</initializer>
+											<name identifier="rsa" type="SimpleName"/>
+											<type type="ClassOrInterfaceType">
+												<name identifier="RSA" type="SimpleName"/>
+											</type>
+										</variable>
+									</variables>
+								</expression>
+							</statement>
+							<statement type="ExpressionStmt">
+								<expression type="VariableDeclarationExpr">
+									<variables>
+										<variable type="VariableDeclarator">
+											<initializer type="ObjectCreationExpr">
+												<type type="ClassOrInterfaceType">
+													<name identifier="DataInputStream" type="SimpleName"/>
+												</type>
+												<arguments>
+													<argument type="FieldAccessExpr">
+														<name identifier="in" type="SimpleName"/>
+														<scope type="NameExpr">
+															<name identifier="System" type="SimpleName"/>
+														</scope>
+													</argument>
+												</arguments>
+											</initializer>
+											<name identifier="input" type="SimpleName"/>
+											<type type="ClassOrInterfaceType">
+												<name identifier="DataInputStream" type="SimpleName"/>
+											</type>
+										</variable>
+									</variables>
+								</expression>
+							</statement>
+							<statement type="ExpressionStmt">
+								<expression type="VariableDeclarationExpr">
+									<variables>
+										<variable type="VariableDeclarator">
+											<name identifier="inputString" type="SimpleName"/>
+											<type type="ClassOrInterfaceType">
+												<name identifier="String" type="SimpleName"/>
+											</type>
+										</variable>
+									</variables>
+								</expression>
+							</statement>
+							<statement type="ExpressionStmt">
+								<expression type="MethodCallExpr">
+									<name identifier="println" type="SimpleName"/>
+									<scope type="FieldAccessExpr">
+										<name identifier="out" type="SimpleName"/>
+										<scope type="NameExpr">
+											<name identifier="System" type="SimpleName"/>
+										</scope>
+									</scope>
+									<arguments>
+										<argument type="StringLiteralExpr" value="Enter message you wish to send."/>
+									</arguments>
+								</expression>
+							</statement>
+							<statement type="ExpressionStmt">
+								<expression operator="ASSIGN" type="AssignExpr">
+									<target type="NameExpr">
+										<name identifier="inputString" type="SimpleName"/>
+									</target>
+									<value type="MethodCallExpr">
+										<name identifier="readLine" type="SimpleName"/>
+										<scope type="NameExpr">
+											<name identifier="input" type="SimpleName"/>
+										</scope>
+									</value>
+								</expression>
+								<comment content="input text" type="LineComment"/>
+							</statement>
+							<statement type="ExpressionStmt">
+								<expression type="MethodCallExpr">
+									<name identifier="println" type="SimpleName"/>
+									<scope type="FieldAccessExpr">
+										<name identifier="out" type="SimpleName"/>
+										<scope type="NameExpr">
+											<name identifier="System" type="SimpleName"/>
+										</scope>
+									</scope>
+									<arguments>
+										<argument operator="PLUS" type="BinaryExpr">
+											<left type="StringLiteralExpr" value="Encrypting the message: "/>
+											<right type="NameExpr">
+												<name identifier="inputString" type="SimpleName"/>
+											</right>
+										</argument>
+									</arguments>
+								</expression>
+							</statement>
+							<statement type="ExpressionStmt">
+								<expression type="MethodCallExpr">
+									<name identifier="println" type="SimpleName"/>
+									<scope type="FieldAccessExpr">
+										<name identifier="out" type="SimpleName"/>
+										<scope type="NameExpr">
+											<name identifier="System" type="SimpleName"/>
+										</scope>
+									</scope>
+									<arguments>
+										<argument operator="PLUS" type="BinaryExpr">
+											<left type="StringLiteralExpr" value="The message in bytes is:: "/>
+											<right type="MethodCallExpr">
+												<name identifier="bToS" type="SimpleName"/>
+												<comment content="cypher text" type="LineComment"/>
+												<arguments>
+													<argument type="MethodCallExpr">
+														<name identifier="getBytes" type="SimpleName"/>
+														<scope type="NameExpr">
+															<name identifier="inputString" type="SimpleName"/>
+														</scope>
+													</argument>
+												</arguments>
+											</right>
+										</argument>
+									</arguments>
+								</expression>
+							</statement>
+							<statement type="ExpressionStmt">
+								<expression type="VariableDeclarationExpr">
+									<variables>
+										<variable type="VariableDeclarator">
+											<initializer type="MethodCallExpr">
+												<name identifier="encryptMessage" type="SimpleName"/>
+												<scope type="NameExpr">
+													<name identifier="rsa" type="SimpleName"/>
+												</scope>
+												<arguments>
+													<argument type="MethodCallExpr">
+														<name identifier="getBytes" type="SimpleName"/>
+														<scope type="NameExpr">
+															<name identifier="inputString" type="SimpleName"/>
+														</scope>
+													</argument>
+												</arguments>
+											</initializer>
+											<name identifier="cipher" type="SimpleName"/>
+											<type origin="TYPE" type="ArrayType">
+												<componentType identifier="BYTE" type="PrimitiveType"/>
+											</type>
+										</variable>
+									</variables>
+								</expression>
+								<comment content="enc 1" type="LineComment"/>
+							</statement>
+							<statement type="ExpressionStmt">
+								<expression type="VariableDeclarationExpr">
+									<variables>
+										<variable type="VariableDeclarator">
+											<initializer type="MethodCallExpr">
+												<name identifier="decryptMessage" type="SimpleName"/>
+												<scope type="NameExpr">
+													<name identifier="rsa" type="SimpleName"/>
+												</scope>
+												<arguments>
+													<argument type="NameExpr">
+														<name identifier="cipher" type="SimpleName"/>
+													</argument>
+												</arguments>
+											</initializer>
+											<name identifier="plain" type="SimpleName"/>
+											<type origin="TYPE" type="ArrayType">
+												<componentType identifier="BYTE" type="PrimitiveType"/>
+											</type>
+										</variable>
+									</variables>
+								</expression>
+								<comment content=" dec 1" type="LineComment"/>
+							</statement>
+							<statement type="ExpressionStmt">
+								<expression type="MethodCallExpr">
+									<name identifier="println" type="SimpleName"/>
+									<scope type="FieldAccessExpr">
+										<name identifier="out" type="SimpleName"/>
+										<scope type="NameExpr">
+											<name identifier="System" type="SimpleName"/>
+										</scope>
+									</scope>
+									<arguments>
+										<argument operator="PLUS" type="BinaryExpr">
+											<left type="StringLiteralExpr" value="Decrypting Bytes: "/>
+											<right type="MethodCallExpr">
+												<name identifier="bToS" type="SimpleName"/>
+												<arguments>
+													<argument type="NameExpr">
+														<name identifier="plain" type="SimpleName"/>
+													</argument>
+												</arguments>
+											</right>
+										</argument>
+									</arguments>
+								</expression>
+							</statement>
+							<statement type="ExpressionStmt">
+								<expression type="MethodCallExpr">
+									<name identifier="println" type="SimpleName"/>
+									<scope type="FieldAccessExpr">
+										<name identifier="out" type="SimpleName"/>
+										<scope type="NameExpr">
+											<name identifier="System" type="SimpleName"/>
+										</scope>
+									</scope>
+									<arguments>
+										<argument operator="PLUS" type="BinaryExpr">
+											<left operator="PLUS" type="BinaryExpr">
+												<left type="StringLiteralExpr" value=""/>
+												<right type="StringLiteralExpr" value=" "/>
+											</left>
+											<right type="ObjectCreationExpr">
+												<type type="ClassOrInterfaceType">
+													<name identifier="String" type="SimpleName"/>
+												</type>
+												<comment content=" plain again" type="LineComment"/>
+												<arguments>
+													<argument type="NameExpr">
+														<name identifier="plain" type="SimpleName"/>
+													</argument>
+												</arguments>
+											</right>
+										</argument>
+									</arguments>
+								</expression>
+							</statement>
+						</statements>
+					</body>
+					<type type="VoidType"/>
+					<name identifier="main" type="SimpleName"/>
+					<modifiers>
+						<modifier keyword="PUBLIC" type="Modifier"/>
+						<modifier keyword="STATIC" type="Modifier"/>
+					</modifiers>
+					<parameters>
+						<parameter isVarArgs="false" type="Parameter">
+							<name identifier="arguments" type="SimpleName"/>
+							<type origin="TYPE" type="ArrayType">
+								<componentType type="ClassOrInterfaceType">
+									<name identifier="String" type="SimpleName"/>
+								</componentType>
+							</type>
+						</parameter>
+					</parameters>
+					<thrownExceptions>
+						<thrownException type="ClassOrInterfaceType">
+							<name identifier="IOException" type="SimpleName"/>
+						</thrownException>
+					</thrownExceptions>
+				</member>
+				<member type="MethodDeclaration">
+					<body type="BlockStmt">
+						<statements>
+							<statement type="ExpressionStmt">
+								<expression type="VariableDeclarationExpr">
+									<variables>
+										<variable type="VariableDeclarator">
+											<initializer type="StringLiteralExpr" value=""/>
+											<name identifier="temp" type="SimpleName"/>
+											<type type="ClassOrInterfaceType">
+												<name identifier="String" type="SimpleName"/>
+											</type>
+										</variable>
+									</variables>
+								</expression>
+							</statement>
+							<statement type="ForEachStmt">
+								<body type="BlockStmt">
+									<statements>
+										<statement type="ExpressionStmt">
+											<expression operator="PLUS" type="AssignExpr">
+												<target type="NameExpr">
+													<name identifier="temp" type="SimpleName"/>
+												</target>
+												<value type="MethodCallExpr">
+													<name identifier="toString" type="SimpleName"/>
+													<scope type="NameExpr">
+														<name identifier="Byte" type="SimpleName"/>
+													</scope>
+													<arguments>
+														<argument type="NameExpr">
+															<name identifier="b" type="SimpleName"/>
+														</argument>
+													</arguments>
+												</value>
+											</expression>
+										</statement>
+									</statements>
+								</body>
+								<iterable type="NameExpr">
+									<name identifier="cipher" type="SimpleName"/>
+								</iterable>
+								<variable type="VariableDeclarationExpr">
+									<variables>
+										<variable type="VariableDeclarator">
+											<name identifier="b" type="SimpleName"/>
+											<type identifier="BYTE" type="PrimitiveType"/>
+										</variable>
+									</variables>
+								</variable>
+							</statement>
+							<statement type="ReturnStmt">
+								<expression type="NameExpr">
+									<name identifier="temp" type="SimpleName"/>
+								</expression>
+							</statement>
+						</statements>
+					</body>
+					<type type="ClassOrInterfaceType">
+						<name identifier="String" type="SimpleName"/>
+					</type>
+					<name identifier="bToS" type="SimpleName"/>
+					<modifiers>
+						<modifier keyword="PRIVATE" type="Modifier"/>
+						<modifier keyword="STATIC" type="Modifier"/>
+					</modifiers>
+					<parameters>
+						<parameter isVarArgs="false" type="Parameter">
+							<name identifier="cipher" type="SimpleName"/>
+							<type origin="TYPE" type="ArrayType">
+								<componentType identifier="BYTE" type="PrimitiveType"/>
+							</type>
+						</parameter>
+					</parameters>
+				</member>
+				<member type="MethodDeclaration">
+					<body type="BlockStmt">
+						<statements>
+							<statement type="ReturnStmt">
+								<expression type="MethodCallExpr">
+									<name identifier="toByteArray" type="SimpleName"/>
+									<scope type="MethodCallExpr">
+										<name identifier="modPow" type="SimpleName"/>
+										<scope type="EnclosedExpr">
+											<inner type="ObjectCreationExpr">
+												<type type="ClassOrInterfaceType">
+													<name identifier="BigInteger" type="SimpleName"/>
+												</type>
+												<arguments>
+													<argument type="NameExpr">
+														<name identifier="message" type="SimpleName"/>
+													</argument>
+												</arguments>
+											</inner>
+										</scope>
+										<arguments>
+											<argument type="NameExpr">
+												<name identifier="e" type="SimpleName"/>
+											</argument>
+											<argument type="NameExpr">
+												<name identifier="N" type="SimpleName"/>
+											</argument>
+										</arguments>
+									</scope>
+								</expression>
+								<comment content="enc 2" type="LineComment"/>
+							</statement>
+						</statements>
+					</body>
+					<type origin="TYPE" type="ArrayType">
+						<componentType identifier="BYTE" type="PrimitiveType"/>
+					</type>
+					<name identifier="encryptMessage" type="SimpleName"/>
+					<comment content=" Encrypting the message" type="LineComment"/>
+					<modifiers>
+						<modifier keyword="PUBLIC" type="Modifier"/>
+					</modifiers>
+					<parameters>
+						<parameter isVarArgs="false" type="Parameter">
+							<name identifier="message" type="SimpleName"/>
+							<type origin="TYPE" type="ArrayType">
+								<componentType identifier="BYTE" type="PrimitiveType"/>
+							</type>
+						</parameter>
+					</parameters>
+				</member>
+				<member type="MethodDeclaration">
+					<body type="BlockStmt">
+						<statements>
+							<statement type="ReturnStmt">
+								<expression type="MethodCallExpr">
+									<name identifier="toByteArray" type="SimpleName"/>
+									<scope type="MethodCallExpr">
+										<name identifier="modPow" type="SimpleName"/>
+										<scope type="EnclosedExpr">
+											<inner type="ObjectCreationExpr">
+												<type type="ClassOrInterfaceType">
+													<name identifier="BigInteger" type="SimpleName"/>
+												</type>
+												<arguments>
+													<argument type="NameExpr">
+														<name identifier="message" type="SimpleName"/>
+													</argument>
+												</arguments>
+											</inner>
+										</scope>
+										<arguments>
+											<argument type="NameExpr">
+												<name identifier="d" type="SimpleName"/>
+											</argument>
+											<argument type="NameExpr">
+												<name identifier="N" type="SimpleName"/>
+											</argument>
+										</arguments>
+									</scope>
+								</expression>
+								<comment content="dec 2" type="LineComment"/>
+							</statement>
+						</statements>
+					</body>
+					<type origin="TYPE" type="ArrayType">
+						<componentType identifier="BYTE" type="PrimitiveType"/>
+					</type>
+					<name identifier="decryptMessage" type="SimpleName"/>
+					<comment content=" Decrypting the message" type="LineComment"/>
+					<modifiers>
+						<modifier keyword="PUBLIC" type="Modifier"/>
+					</modifiers>
+					<parameters>
+						<parameter isVarArgs="false" type="Parameter">
+							<name identifier="message" type="SimpleName"/>
+							<type origin="TYPE" type="ArrayType">
+								<componentType identifier="BYTE" type="PrimitiveType"/>
+							</type>
+						</parameter>
+					</parameters>
+				</member>
+			</members>
+			<modifiers>
+				<modifier keyword="PUBLIC" type="Modifier"/>
+			</modifiers>
+		</type>
+	</types>
+</root>
