@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:FSMup2="FSMup2">
+  <FSMup2:FSM name="RSA" transition="/6 /5 /9 /8 /12 /11" state="/1 /2 /3 /4"/>
+  <FSMup2:State name="main" output="/5 /8 /11" input="/6 /9 /12" fsm="/0"/>
+  <FSMup2:State name="bytesToString" output="/12" input="/11" fsm="/0"/>
+  <FSMup2:State name="encrypt" output="/6" input="/5" fsm="/0"/>
+  <FSMup2:State name="decrypt" output="/9" input="/8" fsm="/0"/>
+  <FSMup2:Transition trigger="/7" source="/1" target="/3" fsm="/0"/>
+  <FSMup2:Transition source="/3" target="/1" fsm="/0"/>
+  <FSMup2:Event name="encrypt" transition="/5"/>
+  <FSMup2:Transition trigger="/10" source="/1" target="/4" fsm="/0"/>
+  <FSMup2:Transition source="/4" target="/1" fsm="/0"/>
+  <FSMup2:Event name="decrypt" transition="/8"/>
+  <FSMup2:Transition trigger="/13" source="/1" target="/2" fsm="/0"/>
+  <FSMup2:Transition source="/2" target="/1" fsm="/0"/>
+  <FSMup2:Event name="bytesToString" transition="/11"/>
+</xmi:XMI>

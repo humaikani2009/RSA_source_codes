@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:FSMup2="FSMup2">
+  <FSMup2:FSM name="RSA" transition="/13 /12 /16 /15 /19 /18 /22 /21 /25 /24 /28 /27 /31 /30 /34 /33 /37 /36" state="/1 /2 /3 /4 /5 /6 /7 /8 /9 /10 /11"/>
+  <FSMup2:State name="main" output="/12 /15 /18 /21 /24 /27 /30 /33 /36" input="/13 /16 /19 /22 /25 /28 /31 /34 /37" fsm="/0"/>
+  <FSMup2:State name="stringCipher" output="/28" input="/27" fsm="/0"/>
+  <FSMup2:State name="cipherToString" output="/37" input="/36" fsm="/0"/>
+  <FSMup2:State name="getPhi" output="/19" input="/18" fsm="/0"/>
+  <FSMup2:State name="largePrime" output="/13" input="/12" fsm="/0"/>
+  <FSMup2:State name="gcd" fsm="/0"/>
+  <FSMup2:State name="extEuclid" output="/25" input="/24" fsm="/0"/>
+  <FSMup2:State name="genE" output="/22" input="/21" fsm="/0"/>
+  <FSMup2:State name="encrypt" output="/31" input="/30" fsm="/0"/>
+  <FSMup2:State name="decrypt" output="/34" input="/33" fsm="/0"/>
+  <FSMup2:State name="n" output="/16" input="/15" fsm="/0"/>
+  <FSMup2:Transition trigger="/14" source="/1" target="/5" fsm="/0"/>
+  <FSMup2:Transition source="/5" target="/1" fsm="/0"/>
+  <FSMup2:Event name="largePrime" transition="/12"/>
+  <FSMup2:Transition trigger="/17" source="/1" target="/11" fsm="/0"/>
+  <FSMup2:Transition source="/11" target="/1" fsm="/0"/>
+  <FSMup2:Event name="n" transition="/15"/>
+  <FSMup2:Transition trigger="/20" source="/1" target="/4" fsm="/0"/>
+  <FSMup2:Transition source="/4" target="/1" fsm="/0"/>
+  <FSMup2:Event name="getPhi" transition="/18"/>
+  <FSMup2:Transition trigger="/23" source="/1" target="/8" fsm="/0"/>
+  <FSMup2:Transition source="/8" target="/1" fsm="/0"/>
+  <FSMup2:Event name="genE" transition="/21"/>
+  <FSMup2:Transition trigger="/26" source="/1" target="/7" fsm="/0"/>
+  <FSMup2:Transition source="/7" target="/1" fsm="/0"/>
+  <FSMup2:Event name="extEuclid" transition="/24"/>
+  <FSMup2:Transition trigger="/29" source="/1" target="/2" fsm="/0"/>
+  <FSMup2:Transition source="/2" target="/1" fsm="/0"/>
+  <FSMup2:Event name="stringCipher" transition="/27"/>
+  <FSMup2:Transition trigger="/32" source="/1" target="/9" fsm="/0"/>
+  <FSMup2:Transition source="/9" target="/1" fsm="/0"/>
+  <FSMup2:Event name="encrypt" transition="/30"/>
+  <FSMup2:Transition trigger="/35" source="/1" target="/10" fsm="/0"/>
+  <FSMup2:Transition source="/10" target="/1" fsm="/0"/>
+  <FSMup2:Event name="decrypt" transition="/33"/>
+  <FSMup2:Transition trigger="/38" source="/1" target="/3" fsm="/0"/>
+  <FSMup2:Transition source="/3" target="/1" fsm="/0"/>
+  <FSMup2:Event name="cipherToString" transition="/36"/>
+</xmi:XMI>
