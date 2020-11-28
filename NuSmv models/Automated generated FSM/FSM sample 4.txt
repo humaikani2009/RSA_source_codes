@@ -1,0 +1,32 @@
+MODULE main
+VAR
+	state : {main, largePrime, n, getPhi, genE, extEuclid, stringCipher, encrypt, decrypt, cipherToString};	
+ASSIGN
+	init(state) := main;
+	next(state) := 
+		case
+			state = main : largePrime;
+			state = largePrime : main;
+			state = main : n;
+			state = n : main;
+			state = main : getPhi;
+			state = getPhi : main;
+			state = main : genE;
+			state = genE : main;
+			state = main : extEuclid;
+			state = extEuclid : main;
+			state = main : stringCipher;
+			state = stringCipher : main;
+			state = main : encrypt;
+			state = encrypt : main;
+			state = main : decrypt;
+			state = decrypt : main;
+			state = main : cipherToString;
+			state = cipherToString : main;
+			state = main : main;
+					
+			esac;
+
+LTLSPEC G(state = encrypt) -> G(F state = decrypt)
+LTLSPEC G(state = stringCipher)-> G(F state = encrypt)
+LTLSPEC G(state = decrypt)-> G(F state = cipherToString) 

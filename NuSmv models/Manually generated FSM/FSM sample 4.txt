@@ -1,0 +1,18 @@
+MODULE main
+VAR
+	state : {generatedPuk,generatedPrK,TextinBytes,TextEncrypted, TextDecrypted};	
+ASSIGN
+	init(state) := generatedPuk;
+	next(state) := 
+		case
+			state = generatedPuk : generatedPrK;
+			state = generatedPrK : TextinBytes;
+			state = TextinBytes :TextEncrypted;
+			state = TextEncrypted : TextDecrypted;
+			state = TextDecrypted : TextDecrypted;
+					
+			esac;
+
+LTLSPEC G(state = TextEncrypted) -> G(F state = TextDecrypted)
+LTLSPEC G(state = generatedPrK)-> G(F state = TextEncrypted)
+LTLSPEC G(state = TextinBytes)-> G(F state = TextDecrypted)

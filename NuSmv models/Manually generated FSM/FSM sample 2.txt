@@ -1,0 +1,17 @@
+MODULE main
+VAR
+	state : {waitText,showText,BytesToString,EncryptedText, DecryptedText};	
+ASSIGN
+	init(state) := waitText;
+	next(state) := 
+		case
+			state = waitText : showText;
+			state = showText : EncryptedText;
+			state = EncryptedText : DecryptedText;
+			state = DecryptedText :	BytesToString;
+			state = BytesToString : BytesToString;
+			esac;
+
+LTLSPEC G(state = EncryptedText) -> G(F state = DecryptedText)
+LTLSPEC G(state = showText)-> G(F state = EncryptedText)
+LTLSPEC G(state = DecryptedText)-> G(F state = BytesToString)

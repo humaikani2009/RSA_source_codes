@@ -1,0 +1,17 @@
+MODULE main
+VAR
+	state : {Idle,ReadInput,TextConverted,TextEncrypted, TextDecrypted};	
+ASSIGN
+	init(state) := Idle;
+	next(state) := 
+		case
+			state = Idle : ReadInput;
+			state = ReadInput : TextEncrypted;
+			state = TextEncrypted : TextDecrypted;
+			state = TextDecrypted : TextConverted;
+			state = TextConverted : TextConverted;
+			esac;
+
+LTLSPEC G(state = TextEncrypted) -> G(F state = TextDecrypted)
+LTLSPEC G(state = ReadInput)-> G(F state = TextEncrypted)
+LTLSPEC G(state = TextDecrypted)-> G(F state = TextConverted)

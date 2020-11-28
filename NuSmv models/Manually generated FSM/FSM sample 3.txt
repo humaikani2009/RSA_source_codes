@@ -1,0 +1,17 @@
+MODULE main
+VAR
+	state : {idle,randomtext,textencrypted, textdecrypted};	
+ASSIGN
+	init(state) := idle;
+	next(state) := 
+		case
+			state = idle : randomtext;
+			state = randomtext : textencrypted;
+			state = textencrypted : textdecrypted;
+			state = textdecrypted : textdecrypted;
+					
+			esac;
+
+LTLSPEC G(state = textencrypted) -> G(F state = textdecrypted)
+LTLSPEC G(state = randomtext)-> G(F state = textencrypted)
+LTLSPEC G(state = textdecrypted)-> G(F state = randomtext)

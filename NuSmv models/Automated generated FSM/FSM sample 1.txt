@@ -1,0 +1,20 @@
+MODULE main
+VAR
+	state : {main, encryptMessage, decryptMessage, bToS};	
+ASSIGN
+	init(state) := main;
+	next(state) := 
+		case
+			state = main : encryptMessage;
+			state = encryptMessage : main;
+			state = main : decryptMessage;
+			state = decryptMessage : main;
+			state = main : bToS;
+			state = bToS : main;
+			state = main : main;
+					
+			esac;
+
+LTLSPEC G(state = encryptMessage) -> G(F state = decryptMessage)
+LTLSPEC G(state = main)-> G(F state = encryptMessage)
+LTLSPEC G(state = decryptMessage)-> G(F state = bToS) 
