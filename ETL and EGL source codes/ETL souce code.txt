@@ -1,0 +1,107 @@
+rule  ast2fsState
+    transform s : ast!t_root
+    to t : fsm!FSM{
+    	var fn: Sequence;
+		var name = "ClassOrInterfaceDeclaration";
+    	for (FSMname in t_type.all){
+			if(FSMname.a_type = name){
+				fn = FSMname.c_name.a_identifier;
+			}
+  		}
+		t.name= fn.concat();
+    
+    	var sn: Sequence;
+    	var m="MethodDeclaration";
+		for (state in t_member.all){
+			if(state.a_type == m){
+	      		var staten= new fsm!State;
+		  		sn = state.c_name.a_identifier;
+		  		staten.name=sn.concat();
+		  		t.state.add(staten);
+			}
+  	  	}
+  	  
+  	  var en: Sequence;
+  	  var eni : Sequence;
+  	 
+    	var mm="main";	 
+		var me= "MethodCallExpr";
+		var sourceName;
+					
+					for (event in t_initializer.all){
+ 						if (event.a_type = me){
+ 							if (event.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.a_type == "MethodDeclaration" 
+ 								and event.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.c_name.exists(t|t.a_identifier=="main")){
+								en=	event.c_name.a_identifier;
+									if ( eni.asString() != en.asString()){ 
+									en.println();
+									eni =  en;
+									var intransition=new fsm!Transition;
+									var outtransition=new fsm!Transition;
+									var eventn = new fsm!Event;
+									eventn.name=en.concat();
+									intransition.trigger:=eventn;
+									intransition.target:=t.state.selectOne(s|s.name.equals(eventn.name));
+									sourceName=event.parent.parent.parent.parent.parent.parent.parent.c_name.a_identifier.concat();//.println();
+									intransition.source:=t.state.selectOne(s|s.name.equals(sourceName));
+									outtransition.source:=intransition.target;//t.state.selectOne(s|s.name.equals(eventn.name));
+									outtransition.target:=intransition.source;//t.state.selectOne(s|s.name.equals(sourceName));
+									t.transition.add(outtransition);
+									t.transition.add(intransition);
+									continue;
+							}
+			  		}
+			 }
+			 else if (event.a_type = "ArrayAccessExpr"){
+ 				if (event.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.a_type == "MethodDeclaration" and event.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.c_name.exists(t|t.a_identifier=="main")){
+					for (nm in t_name){
+						if (nm.a_type = me){
+								en = nm.c_name.a_identifier.println();
+							if ( eni.asString() != en.asString()){ 
+									en.println();
+									eni =  en;
+									var intransition=new fsm!Transition;
+									var outtransition=new fsm!Transition;
+									var eventn = new fsm!Event;
+									eventn.name=en.concat();
+									intransition.trigger:=eventn;
+									intransition.target:=t.state.selectOne(s|s.name.equals(eventn.name));
+									sourceName=event.parent.parent.parent.parent.parent.parent.parent.c_name.a_identifier.concat();//.println();
+									intransition.source:=t.state.selectOne(s|s.name.equals(sourceName));
+									outtransition.source:=intransition.target;//t.state.selectOne(s|s.name.equals(eventn.name));
+									outtransition.target:=intransition.source;//t.state.selectOne(s|s.name.equals(sourceName));
+									t.transition.add(outtransition);
+									t.transition.add(intransition);
+				
+									continue;
+									}
+ 								}
+ 							}
+ 						}
+					}
+			  }
+			 for (event in t_right.all) {
+				if (event.a_type = me){
+					if (event.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.a_type == "MethodDeclaration" and event.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.c_name.exists(t|t.a_identifier=="main")){	
+					en = event.c_name.a_identifier;					
+					if ( eni.asString() != en.asString()){ 
+									en.println();
+									eni =  en;
+									var intransition=new fsm!Transition;
+									var outtransition=new fsm!Transition;
+									var eventn = new fsm!Event;
+									eventn.name=en.concat();
+									intransition.trigger:=eventn;
+									intransition.target:=t.state.selectOne(s|s.name.equals(eventn.name));
+									sourceName=event.parent.parent.parent.parent.parent.parent.parent.c_name.a_identifier.concat();//.println();
+									intransition.source:=t.state.selectOne(s|s.name.equals(sourceName));
+									outtransition.source:=intransition.target;//t.state.selectOne(s|s.name.equals(eventn.name));
+									outtransition.target:=intransition.source;//t.state.selectOne(s|s.name.equals(sourceName));
+									t.transition.add(outtransition);
+									t.transition.add(intransition);
+									continue;
+								}
+						}
+			 	}
+	    }
+}

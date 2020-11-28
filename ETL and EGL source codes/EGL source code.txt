@@ -1,0 +1,39 @@
+[%var fsm = FSM.all().first(); 
+var stateList:String;
+stateList=fsm.transition.source.name.excluding("main").concat(", ").println();
+var sourceName:String;
+var second:String;
+second=fsm.state.name.second();
+var first:String;
+%]
+MODULE main
+VAR
+	state : {[%= fsm.transition.target.name.first() %], [%= stateList %]};	
+ASSIGN
+	init(state) := [%= fsm.transition.target.name.first() %];
+	next(state) := 
+		case
+[%
+
+var sourceNames:Sequence;
+var sourceName:String;
+var targetNames:Sequence;
+var targetName:String;
+var last = fsm.state.name.last();
+
+for(transition in fsm.transition){
+	targetName=transition.target.name;
+	//sourceName=sourceNames.asString();
+	sourceName=transition.source.name;
+	//targetNames=transition.target.name.asSequence().first();
+	//targetName=targetNames.asString();
+//	if (not sourceName.atLeastNMatch(t|t =targetName,1)){
+	
+%]
+			state = [%= targetName %] : [%= sourceName %];
+[%
+}
+//}	
+%]			state = [%= fsm.transition.source.name.last() %] : [%= fsm.transition.source.name.last() %];
+					
+			esac;
